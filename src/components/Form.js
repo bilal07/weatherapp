@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Form extends Component {
-    state = {  }
-    render() {
+const Form = (props) => {
         return (
-            <div>Form component</div>
+            <form onSubmit={props.getWeather}>
+                <input type="text" placeholder="City..." />
+                <input type="text" placeholder="Country..." />
+                <button>Get Weather</button>
+            </form>
         );
-    }
 }
 
 export default Form;

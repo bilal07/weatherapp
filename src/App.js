@@ -3,10 +3,16 @@ import Form from './components/Form';
 import Weather from './components/Weather'
 
 class App extends Component {
+  
+  getWeather = (e) => {
+    e.preventDefault();
+    console.log("weather");
+  }
+
   render(){
     return (
       <div className="App">
-        <Form />
+        <Form getWeather={this.getWeather} />
         <Weather />
       </div>
     );
