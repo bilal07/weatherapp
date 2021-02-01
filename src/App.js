@@ -23,13 +23,13 @@ class App extends Component {
     const api = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}%2C${country}&appid=e36ed364400282e43250b6c4c0274d44`);
     const data = await api.json();
     
-    if(city & country) {
+    if(city && country) {
       this.setState({
-        temperature: this.data.main.temp,
+        temperature: data.main.temp,
         city: data.name,
         country: data.sys.country,
         humidity: data.main.humidity,
-        description: data.weather[0].desctription,
+        description: data.weather[0].description,
         error: ''
       })
     } else {
@@ -39,7 +39,7 @@ class App extends Component {
         country: '',
         humidity: '',
         description: '',
-        error: ''
+        error: 'Please Enter Data'
       })
     }
   }
@@ -48,7 +48,14 @@ class App extends Component {
     return (
       <div className="App">
         <Form getWeather={this.getWeather} />
-        <Weather />
+        <Weather
+          temperature={this.state.temperature}
+          city={this.state.city}
+          country={this.state.country}
+          humidity={this.state.humidity}
+          description={this.state.description}
+          error={this.state.error}
+        />
       </div>
     );
   }
